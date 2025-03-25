@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(CppLearning)
+
+set(CMAKE_CXX_STANDARD 14)
+
+# 设置编译器选项以使用 GBK 字符集输出
+if(CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -finput-charset=UTF-8 -fexec-charset=GBK")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -finput-charset=UTF-8 -fexec-charset=GBK")
+endif()
+if(MSVC)
+    add_compile_options("/source-charset:utf-8")
+    add_compile_options("/execution-charset:GBK")
+endif()
+
+add_subdirectory(Demo)
+add_subdirectory(Test1.1)
+add_subdirectory(Test1.2)
+add_subdirectory(Test2.1)
+add_subdirectory(Test2.3)
+add_subdirectory(Test3.1)
+add_subdirectory(Test3.2)
+add_subdirectory(Test4.1)
+add_subdirectory(Test4.2)
+add_subdirectory(Test4.3)

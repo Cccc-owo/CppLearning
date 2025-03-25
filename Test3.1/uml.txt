@@ -1,0 +1,15 @@
+@startuml
+class Point {
+    - x: int
+    - y: int
+    
+    + Point(xx: int = 0, yy: int = 0)
+    + setX(xx: int): void
+    + getX(): int
+    + setY(yy: int): void
+    + getY(): int
+    + print(): void
+    + moveRight(offset: int): void
+    + moveDown(offset: int): void
+}
+@enduml
