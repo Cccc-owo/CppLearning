@@ -11,15 +11,13 @@ int main() {
 	srand(static_cast<unsigned> (time(NULL)));
 	const int MAX_PASSENGERS = 62;
 	const int MAX_DESTINATION = 3;
-	const int MAX_LUGGAGES = 3;
 	const int TEAM_NUMS = 5;
-	const int TEAM_MAX_MEMBERS = 6;
 
-	// init passengers and tickets
+	// 初始化旅客及票
 	int numOfPassengers = rand() % MAX_PASSENGERS + 1;
 	Passenger passenger[MAX_PASSENGERS];
 	Ticket tickets[MAX_PASSENGERS];
-	for (int i = 0; i < numOfPassengers; i++) {	// generate passengers
+	for (int i = 0; i < numOfPassengers; i++) {	// 生成旅客
 		char id;
 		if (i < 26) {
 			id = 'A';
@@ -29,7 +27,7 @@ int main() {
 			id = '0';
 		}
 		id += (i % 26);
-		passenger[i] = Passenger(id, static_cast<bool>(rand() % 2), rand() % MAX_DESTINATION, rand() % (MAX_LUGGAGES + 1));
+		passenger[i] = Passenger(id, static_cast<bool>(rand() % 2), rand() % MAX_DESTINATION, rand() % (Passenger::MAX_LUGGAGES + 1));
 		cout << "我是" << passenger[i].getName() << "，";
 		if (passenger[i].getWantTeam()) {
 			cout << "报名旅行社，";
@@ -49,7 +47,7 @@ int main() {
 				}
 			}
 		}
-		tickets[i] = move(Ticket(&passenger[i]));		// init tickets
+		tickets[i] = move(Ticket(&passenger[i]));
 		cout << "买票需付 " << tickets[i].getCost() << " 元";
 		if (tickets[i].getLuggageCost() == 0) {
 			cout << "。" << endl;
@@ -59,61 +57,22 @@ int main() {
 	}
 	cout << endl;
 
-	// init teams
-	Team teams[TEAM_NUMS];
+	// 初始化旅行社
+	TravelAgency agency(TEAM_NUMS);
+	agency.setTeams();
+
+	// 将乘客添加到旅行团
 	cout << "旅行社开始报名。" << endl;
 	for (int i = 0; i < numOfPassengers; i++) {
-		if (passenger[i].getWantTeam()) {
-			for (int j = 0; j < TEAM_NUMS; j++) {
-				if (teams[j].getCount() < TEAM_MAX_MEMBERS && teams[j].getDestination() == passenger[i].getDestination()) {
-					teams[j].addMember(&passenger[i]);
-					break;
-				}
-				if (j + 1 == TEAM_NUMS && teams[j].getDestination() != passenger[i].getDestination()) {
-					tickets[i].setAvailable(false);
-					cout << "由于所有符合条件的旅行团（";
-					passenger[i].printDestination();
-					cout << "）均已报满，" << passenger[i].getName() << " 无法报名旅行团。" << endl;
-				}
-			}
-		}
-	}
-	cout << "旅行社共计安排了 " << TEAM_NUMS << " 个旅行团，";
-	int teamMemberCount = 0;
-	for (int i = 0; i < TEAM_NUMS; i++) {
-		teamMemberCount += teams[i].getCount();
-	}
-	cout << "共计 " << teamMemberCount << " 人报名。" << endl;
-	cout << "出行目的地分别是：";
-	for (int i = 0; i < TEAM_NUMS; i++) {
-		teams[i].printDestination();
-		if (i + 1 < TEAM_NUMS) {
-			cout << "，";
-		} else {
-			cout << "；";
-		}
-	}
-	cout << "每个旅行团的人数分别是：";
-	for (int i = 0; i < TEAM_NUMS; i++) {
-		cout << teams[i].getCount() << " 人";
-		if (i + 1 < TEAM_NUMS) {
-			cout << "，";
-		} else {
-			cout << "；";
-		}
-	}
-	cout << "每个旅行团需要支付的票价是：";
-	for (int i = 0; i < TEAM_NUMS; i++) {
-		cout << teams[i].getCost() << " 元";
-		if (i + 1 < TEAM_NUMS) {
-			cout << "，";
-		} else {
-			cout << "。" << endl;
-		}
+		agency.addPassenger(&passenger[i]);
 	}
 	cout << endl;
 
-	// init ticketOffice
+	// 打印旅行社的总结信息
+	agency.printSummary();
+	cout << endl;
+
+	// 初始化售票处
 	TicketOffice office;
 	cout << "售票处开始售票。" << endl;
 	office.setTicket(tickets, numOfPassengers);

@@ -14,6 +14,7 @@ class Passenger {
 public:
     Passenger();
     Passenger(char id, bool wantTeam, int destination, int luggagesNum);
+	static constexpr int MAX_LUGGAGES = 3;
     string getName() const;
     char getId() const;
 	bool getWantTeam() const;
@@ -25,19 +26,20 @@ private:
     char id;
 	bool wantTeam;
     Destination destination;
-    bool luggages[3] = { false };
+    bool luggages[MAX_LUGGAGES] = { false };
 };
 
 class Team {
 public:
     Team();
+	static constexpr int MAX_MEMBER = 6;
     bool addMember(Passenger* p);			// Returns the status of adding new member
 	Destination getDestination() const;
 	void printDestination() const;
     int getCount() const;
 	int getCost() const;
 private:
-    Passenger* members[6];
+    Passenger* members[MAX_MEMBER];
 	Destination destination;
     int count;
 };
@@ -58,6 +60,18 @@ private:
 	int luggageCost;
 	bool available;
     void calcCost();
+};
+
+class TravelAgency {
+public:
+	TravelAgency(int teamsCount);
+	void addPassenger(Passenger* p);
+	void printSummary() const;
+	void setTeams();
+private:
+	Team* teams;
+	int teamsCount;
+	int teamMemberCount = 0;
 };
 
 class TicketOffice {

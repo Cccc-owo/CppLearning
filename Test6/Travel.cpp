@@ -152,6 +152,70 @@ void Ticket::setAvailable(bool available) {
 	this->available = available;
 }
 
+TravelAgency::TravelAgency(int teamsCount) : teams(new Team[teamsCount]), teamsCount(teamsCount) {
+}
+
+void TravelAgency::setTeams() {
+	for (int i = 0; i < teamsCount; i++) {
+		teams[i] = Team();
+	}
+}
+
+void TravelAgency::addPassenger(Passenger* p) {
+	if (!p->getWantTeam()) return; // 如果乘客不想加入旅行团，则跳过
+
+	bool added = false;
+	for (int i = 0; i < teamsCount; i++) {
+		if (teams[i].getCount() < Team::MAX_MEMBER && teams[i].getDestination() == p->getDestination()) {
+			teams[i].addMember(p);
+			teamMemberCount++;
+			added = true;
+			break;
+		}
+	}
+
+	if (!added) {
+		cout << "由于所有符合条件的旅行团（";
+		p->printDestination();
+		cout << "）均已报满，" << p->getName() << " 无法报名旅行团。" << endl;
+	}
+}
+
+void TravelAgency::printSummary() const {
+	cout << "旅行社共计安排了 " << teamsCount << " 个旅行团，";
+	cout << "共计 " << teamMemberCount << " 人报名。" << endl;
+
+	cout << "出行目的地分别是：";
+	for (int i = 0; i < teamsCount; i++) {
+		teams[i].printDestination();
+		if (i + 1 < teamsCount) {
+			cout << "，";
+		} else {
+			cout << "；";
+		}
+	}
+
+	cout << "每个旅行团的人数分别是：";
+	for (int i = 0; i < teamsCount; i++) {
+		cout << teams[i].getCount() << " 人";
+		if (i + 1 < teamsCount) {
+			cout << "，";
+		} else {
+			cout << "；";
+		}
+	}
+
+	cout << "每个旅行团需要支付的票价是：";
+	for (int i = 0; i < teamsCount; i++) {
+		cout << teams[i].getCost() << " 元";
+		if (i + 1 < teamsCount) {
+			cout << "，";
+		} else {
+			cout << "。" << endl;
+		}
+	}
+}
+
 TicketOffice::TicketOffice() : tickets(nullptr), amount(0) {
 }
 
