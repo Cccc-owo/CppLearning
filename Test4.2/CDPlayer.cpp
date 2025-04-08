@@ -129,11 +129,10 @@ void CDPlayer::insertCD(CD* cd) {
 CD* CDPlayer::ejectCD() {
 	if (cd == nullptr) {
 		cout << "播放器中没有CD，弹出失败！" << endl;
-		return nullptr;
+	} else {
+		cout << "弹出了" << cd->getSinger() << "的CD。" << endl;
+		cd = nullptr;
 	}
-	CD* return_cd = cd;
-	cout << "弹出了" << cd->getSinger() << "的CD。" << endl;
-	cd = nullptr;
 	return cd;
 }
 

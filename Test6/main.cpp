@@ -49,7 +49,7 @@ int main() {
 				}
 			}
 		}
-		tickets[i] = Ticket(&passenger[i]);		// init tickets
+		tickets[i] = move(Ticket(&passenger[i]));		// init tickets
 		cout << "买票需付 " << tickets[i].getCost() << " 元";
 		if (tickets[i].getLuggageCost() == 0) {
 			cout << "。" << endl;
