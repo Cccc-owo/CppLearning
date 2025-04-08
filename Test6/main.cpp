@@ -17,42 +17,42 @@ int main() {
 	int numOfPassengers = rand() % MAX_PASSENGERS + 1;
 	Passenger passenger[MAX_PASSENGERS];
 	Ticket tickets[MAX_PASSENGERS];
-	for (int i = 0; i < numOfPassengers; i++) {	// 生成旅客
+	for (int order = 0; order < numOfPassengers; order++) {	// 生成旅客
 		char id;
-		if (i < 26) {
+		if (order < 26) {
 			id = 'A';
-		} else if (i - 26 < 26) {
+		} else if (order - 26 < 26) {
 			id = 'a';
 		} else {
 			id = '0';
 		}
-		id += (i % 26);
-		passenger[i] = Passenger(id, static_cast<bool>(rand() % 2), rand() % MAX_DESTINATION, rand() % (Passenger::MAX_LUGGAGES + 1));
-		cout << "我是" << passenger[i].getName() << "，";
-		if (passenger[i].getWantTeam()) {
+		id += (order % 26);
+		passenger[order] = Passenger(id, static_cast<bool>(rand() % 2), rand() % MAX_DESTINATION, rand() % (Passenger::MAX_LUGGAGES + 1));
+		tickets[order] = move(Ticket(&passenger[order]));
+		cout << "我是" << passenger[order].getName() << "，";
+		if (passenger[order].getWantTeam()) {
 			cout << "报名旅行社，";
 		} else {
 			cout << "选择自由出行，";
 		}
-		passenger[i].printDestination();
-		cout << "，携带 " << passenger[i].getLuggagesCount() << " 件行李，";
-		if (passenger[i].getLuggagesCount() > 0) {
+		passenger[order].printDestination();
+		cout << "，携带 " << passenger[order].getLuggagesCount() << " 件行李，";
+		if (passenger[order].getLuggagesCount() > 0) {
 			cout << "行李编号是 ";
-			for (int j = 0; j < passenger[i].getLuggagesCount(); j++) {
-				cout << passenger[i].getId() << setfill('0') << setw(2) << j + 1;
-				if (j + 1 < passenger[i].getLuggagesCount()) {
+			for (int luggageOrder = 0; luggageOrder < passenger[order].getLuggagesCount(); luggageOrder++) {
+				cout << passenger[order].getId() << setfill('0') << setw(2) << luggageOrder + 1;
+				if (luggageOrder + 1 < passenger[order].getLuggagesCount()) {
 					cout << "、";
 				} else {
 					cout << "，";
 				}
 			}
 		}
-		tickets[i] = move(Ticket(&passenger[i]));
-		cout << "买票需付 " << tickets[i].getCost() << " 元";
-		if (tickets[i].getLuggageCost() == 0) {
+		cout << "买票需付 " << tickets[order].getCost() << " 元";
+		if (tickets[order].getLuggageCost() == 0) {
 			cout << "。" << endl;
 		} else {
-			cout << "，行李托运费 " << tickets[i].getLuggageCost() << " 元。" << endl;
+			cout << "，行李托运费 " << tickets[order].getLuggageCost() << " 元。" << endl;
 		}
 	}
 	cout << endl;
