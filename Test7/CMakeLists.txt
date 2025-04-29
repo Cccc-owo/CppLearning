@@ -1,5 +1,5 @@
 set(SOURCES main.cpp
-        park.cpp
+        Park.cpp
         Automobile.cpp
         Truck.cpp
         Bus.cpp
