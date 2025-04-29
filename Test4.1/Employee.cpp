@@ -86,7 +86,7 @@ Date::Date(int year, int month, int day): year(year), month(month), day(day), se
 	if (month == 2 && isLeapYear(year)) {
 		maxDay = 29;
 	}
-	if (day != maxDay) {
+	if (day > maxDay) {
 		this->day = 1;
 	}
 }
@@ -102,7 +102,7 @@ void Date::setDate(int year, int month, int day) {
 	if (this->month == 2 && isLeapYear(year)) {
 		maxDay = 29;
 	}
-	if (day != maxDay) {
+	if (day > maxDay) {
 		this->day = 1;
 	}
 }

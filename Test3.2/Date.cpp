@@ -58,7 +58,7 @@ Date::Date(int ayear, int amonth, int aday) : year(ayear), month(amonth), day(ad
 	if (month == 2 && (year % 400 == 0 || year % 100 != 0 && year % 4 == 0)) {
 		maxDay = 29;
 	}
-	if (day != maxDay) {
+	if (day > maxDay) {
 		this->day = 1;
 	}
 }
@@ -76,7 +76,7 @@ void Date::setDate(int ayear, int amonth, int aday) {
 	if (month == 2 && (year % 400 == 0 || year % 100 != 0 && year % 4 == 0)) {
 		maxDay = 29;
 	}
-	if (day != maxDay) {
+	if (day > maxDay) {
 		this->day = 1;
 	}
 }
