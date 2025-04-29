@@ -38,5 +38,6 @@ int main() {
 	/* 显示当前停放的车辆的车牌号码，以及当前的全部停车费收入*/
 	park->showInfo();
 	delete park;
+
 	return 0;
 }

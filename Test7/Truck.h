@@ -3,7 +3,7 @@
 
 #include "Automobile.h"
 
-class Truck : public Automobile{
+class Truck : public Automobile {
 public:
 	Truck(string id, double maxWeight);
 	int pay() const override;
