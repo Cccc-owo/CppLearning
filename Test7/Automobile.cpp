@@ -4,6 +4,10 @@
 Automobile::Automobile(string id) : id(move(id)) {
 }
 
+int Automobile::pay() const {
+	return 0;
+}
+
 string Automobile::getId() {
 	return id;
 }

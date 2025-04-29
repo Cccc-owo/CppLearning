@@ -6,7 +6,7 @@
 class Truck : public Automobile {
 public:
 	Truck(string id, double maxWeight);
-	int pay() const override;
+	int pay() const;
 private:
 	double maxWeight;
 };

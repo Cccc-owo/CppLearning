@@ -11,8 +11,8 @@ class Park;
 class Automobile {
 public:
 	explicit Automobile(string id);
-	virtual ~Automobile() = default;
-    virtual int pay() const = 0;
+	~Automobile() = default;
+    int pay() const;
 	string getId();
 	void enter(Park* park);
 	void leave(Park* park);

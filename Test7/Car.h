@@ -6,7 +6,7 @@
 class Car : public Automobile {
 public:
 	Car(string id, string type);
-	int pay() const override;
+	int pay() const;
 private:
 	string type;
 };
