@@ -98,15 +98,9 @@ int Date::operator-(const Date& date2) const {
 }
 
 bool Date::operator>(const Date& date2) const {
-	if (*this - date2 < 0) {
-		return true;
-	}
-	return false;
+    return (*this - date2 < 0) ? true : false;
 }
 
 bool Date::operator<(const Date& date2) const {
-	if (*this - date2 > 0) {
-		return true;
-	}
-	return false;
+    return (*this - date2 > 0) ? true : false;
 }
