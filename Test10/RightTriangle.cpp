@@ -1,4 +1,5 @@
 #include "RightTriangle.h"
+#include "cmath"
 
 RightTriangle::RightTriangle(double lengthA, double lengthB) : lengthA(lengthA), lengthB(lengthB) {
 }
