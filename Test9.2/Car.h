@@ -6,7 +6,6 @@
 class Car : public Automobile {
 public:
 	Car(std::string id, std::string type);
-	int pay() const;
 private:
 	std::string type;
 	void pay(Park* park) override;
