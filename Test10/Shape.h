@@ -7,10 +7,11 @@
 class Shape {
 public:
 	Shape() = default;
+	virtual ~Shape() = default;
 	virtual std::string getName() const = 0;
 	virtual void printArg() const = 0;
 	virtual double getCircumference() const = 0;
-	void printCircumference();
+	void printCircumference() const;
 	friend bool operator>(const Shape& a, const Shape& b);
 };
 
