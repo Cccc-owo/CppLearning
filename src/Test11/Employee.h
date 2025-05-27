@@ -8,7 +8,7 @@
 class Employee {
 public:
 	//构造函数，使用“初始化列表”初始化数据成员
-	Employee(std::string firstName, std::string lastName, Date& birthDate, Date& hireDate);
+	Employee(std::string firstName, std::string lastName, Date birthDate, Date hireDate);
 	//打印员工的信息。调用Date类的print函数，打印员工的生日和雇佣日期。
 	void print() const;
 	//计算员工在参数指定的日期时，满多少岁。请使用Date类的fullYearsTo函数

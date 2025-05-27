@@ -1,6 +1,6 @@
 #include "Employee.h"
 
-Employee::Employee(std::string firstName, std::string lastName, Date& birthDate, Date& hireDate): firstName(firstName), lastName(lastName), birthDate(birthDate), hireDate(hireDate) {
+Employee::Employee(std::string firstName, std::string lastName, Date birthDate, Date hireDate): firstName(firstName), lastName(lastName), birthDate(birthDate), hireDate(hireDate) {
 }
 
 void Employee::print() const {
