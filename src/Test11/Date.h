@@ -1,3 +1,6 @@
+#ifndef DATE_H
+#define DATE_H
+
 #include <iostream>
 #include <iomanip>
 
@@ -23,10 +26,11 @@ public:
 	/* 计算当前日期与参数日期之间相差几个整年，仅考虑参数日期比当前日期晚的情况。注意参数为日期对象的引用。*/
 	int fullYearsTo(Date& date) const;
 	/* 计算当前日期与参数日期之间相差多少天(考虑闰年)，如果参数日期在当前日期之前，返回负数。注意参数为日期对象的引用。*/
-	int daysTo(Date& date);
+	int daysTo(const Date& date) const;
 	/* 新增函数，可以被daysTo函数调用 */
-	int getDayOfYear();  //计算当前日期是本年的第几天
-	int getLeftDaysYear(); //计算当前日期距本年结束还有几天，不包括当前日期这天
+	int getDayOfYear() const;  //计算当前日期是本年的第几天
+	int getLeftDaysYear() const; //计算当前日期距本年结束还有几天，不包括当前日期这天
+	bool operator>(const Date& date);
 private:
 	int year;
 	int month;
@@ -36,7 +40,9 @@ private:
 	/*声明静态常变量，每月的天数，在.cpp文件中定义并初始化 */
 	static const int DAYS_PER_MONTH[12];
 	/*根据年和月，判断参数日期是否合法。如果合法，返回day，否则返回-1。*/
-	int checkDay(int day);
-	bool isLeapYear(int year);//判断参数年是否是闰年。
-	int countDays(Date date);//计算一个日期是1/1/1的第几天
+	int checkDay(int day) const;
+	bool isLeapYear(int year) const;//判断参数年是否是闰年。
+	int countDays(Date date) const;//计算一个日期是1/1/1的第几天
 };
+
+#endif // DATE_H

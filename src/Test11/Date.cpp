@@ -74,7 +74,7 @@ int Date::fullYearsTo(Date& date) const {
 	return (date.getMonth() > month || date.getMonth() == month && date.getDay() >= day) ? diffYear : diffYear - 1;
 }
 
-int Date::countDays(Date date) {
+int Date::countDays(Date date) const {
 	int ayear = date.getYear();
 	int amonth = date.getMonth();
 	int aday = date.getDay();
@@ -85,11 +85,11 @@ int Date::countDays(Date date) {
 	return 365 * ayear + (ayear / 4) - ayear / 100 + ayear / 400 + (153 * amonth - 457) / 5 + aday - 306;
 }
 
-int Date::daysTo(Date& date) {
+int Date::daysTo(const Date& date) const {
 	return countDays(date) - countDays(*this);
 }
 
-int Date::getDayOfYear() {
+int Date::getDayOfYear() const {
 	int count = 0;
 	for (int i = 0; i < month - 1; i++) {
 		count += DAYS_PER_MONTH[i];
@@ -101,17 +101,21 @@ int Date::getDayOfYear() {
 	return count;
 }
 
-int Date::getLeftDaysYear() {
+int Date::getLeftDaysYear() const {
 	return isLeapYear(year) ? 366 - getDayOfYear() : 365 - getDayOfYear();
 }
 
-int Date::checkDay(int day) {
+bool Date::operator>(const Date& date) {
+	return !(this->daysTo(date) > 0);
+}
+
+int Date::checkDay(int day) const {
 	if (month == 2 && isLeapYear(year) && day != 29 || day != DAYS_PER_MONTH[month - 1]) {
 		return -1;
 	}
 	return day;
 }
 
-bool Date::isLeapYear(int year) {
+bool Date::isLeapYear(int year) const {
 	return (year % 400 == 0 || year % 100 != 0 && year % 4 == 0);
 }
