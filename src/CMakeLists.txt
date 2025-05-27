@@ -1,4 +1,3 @@
-
 add_subdirectory(Demo)
 add_subdirectory(SelfTest)
 add_subdirectory(Test1.1)
@@ -20,3 +19,4 @@ add_subdirectory(Test9.1)
 add_subdirectory(Test9.2)
 add_subdirectory(Test10)
 add_subdirectory(Test11)
+add_subdirectory(Test12)
