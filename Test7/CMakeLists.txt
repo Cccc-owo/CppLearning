@@ -1,7 +1,2 @@
-set(SOURCES main.cpp
-        Park.cpp
-        Automobile.cpp
-        Truck.cpp
-        Bus.cpp
-        Car.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(Test7 ${SOURCES})

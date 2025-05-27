@@ -1,3 +1,2 @@
-set(SOURCES main.cpp
-        post.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(SelfTest ${SOURCES})

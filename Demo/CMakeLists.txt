@@ -1,2 +1,2 @@
-set(SOURCES main.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(Demo ${SOURCES})

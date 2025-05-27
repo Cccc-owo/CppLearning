@@ -1,5 +1,2 @@
-set(SOURCES main.cpp
-        Account.cpp
-        CheckingAccount.cpp
-        SavingsAccount.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(Test9.1 ${SOURCES})

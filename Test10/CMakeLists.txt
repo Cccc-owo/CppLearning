@@ -1,6 +1,2 @@
-set(SOURCES main.cpp
-        Circle.cpp
-        Rectangle.cpp
-        RightTriangle.cpp
-        Shape.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(Test10 ${SOURCES})

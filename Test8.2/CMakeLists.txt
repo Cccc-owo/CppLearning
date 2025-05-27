@@ -1,4 +1,2 @@
-set(SOURCES main.cpp
-		date.cpp
-		Employee.cpp)
+file(GLOB SOURCES "*.cpp")
 add_executable(Test8.2 ${SOURCES})
