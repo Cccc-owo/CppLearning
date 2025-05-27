@@ -29,9 +29,9 @@ int main() {
 		Employee("B", "B", Date(1996, 2, 17), today), 
 		Employee("C", "C", Date(1990, 1, 1), today) };
 
-	Point maxPoint = max<Point>(arr1, 3);
-	Date maxDate = max<Date>(arr2, 3);
-	Employee maxEmployee = max<Employee>(arr3, 3);
+	auto maxPoint = max<Point>(arr1, 3);
+	auto maxDate = max<Date>(arr2, 3);
+	auto maxEmployee = max<Employee>(arr3, 3);
 
 	cout << "数组中离坐标系原点最远的点：";
 	maxPoint.print();
