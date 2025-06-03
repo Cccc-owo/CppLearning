@@ -5,3 +5,4 @@ VSBuild
 Report
 .idea
 .vscode
+src/Test12/data/*.dat
