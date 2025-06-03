@@ -106,7 +106,7 @@ int Date::getLeftDaysYear() const {
 }
 
 bool Date::operator>(const Date& date) {
-	return !(this->daysTo(date) > 0);
+	return this->daysTo(date) < 0;
 }
 
 int Date::checkDay(int day) const {
