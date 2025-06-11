@@ -41,7 +41,7 @@ void ComputerStore::getMenu() const {
 void ComputerStore::displayCurrentStatus() const {
 	std::cout << "商店名称：" << name << std::endl;
 	std::cout << "库存产品数量：" << quantity << std::endl;
-	std::cout << "总收入：" << totalRevenue << "元" << std::endl;
+	std::cout << "总收入：" << totalRevenue << " 元" << std::endl;
 	std::cout << "计算机产品目录：" << std::endl;
 	for (int i = 0; i < products.getSize(); i++) {
 		if (products[i] != nullptr) {
